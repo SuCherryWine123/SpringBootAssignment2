@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"></meta>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+
+<meta name="description" content=""></meta>
+<meta name="author" content=""></meta>
+<link rel="icon" th:href="favicon.ico" />
+
+<title>Employee Management</title>
+
+<!-- Loading animation -->
+<script type="text/scripttype" src="@{/js/pace.min.js}"></script>
+
+<!-- Bootstrap core CSS and Material Bootstrap -->
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css" />
+<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" type="text/css" />
+<link th:href="@{/css/bootstrap-material-design.css}" rel="stylesheet" type="text/css" />
+<link th:href="@{/css/ripples.min.css}" rel="stylesheet" type="text/css" />
+<link th:href="@{/css/material-scrolltop.css}" rel="stylesheet" type="text/css" />
+
+<!-- Custom styles for this template -->
+<link th:href="@{/css/material-blog.css}" rel="stylesheet" type="text/css" />
+
+<!-- Fonts -->
+<link
+	th:href="@{https://fonts.googleapis.com/css?family=Roboto:300,400,500,700}"
+	rel="stylesheet" type="text/css" />
+<link th:href="@{https://fonts.googleapis.com/icon?family=Material+Icons}"
+	rel="stylesheet" type="text/css" />
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+	<br />
+	<div class="container ">
+
+		<div class="row">
+
+			<div class="col-sm-12 blog-main">
+
+				<div class="row">
+					<div class="col-md-12">
+						<section class="blog-post">
+							<div class="panel panel-default">
+								<div class="panel-body">
+									<div class="blog-post-content">
+										<h1 class="blog-post-title">Employee Management Screen</h1>
+										<br />
+
+										<div class="navbar navbar-inverse">
+											<div class="container-fluid">
+												<div class="navbar-header">
+													<button type="button" class="navbar-toggle"
+														data-toggle="collapse"
+														data-target=".navbar-responsive-collapse">
+														<span class="icon-bar"></span> <span class="icon-bar"></span>
+														<span class="icon-bar"></span>
+													</button>
+													<a class="navbar-brand" th:href="index.html">Manage
+														Employee Information</a>
+												</div>
+												<div
+													class="navbar-collapse collapse navbar-responsive-collapse">
+													<ul class="nav navbar-nav"></ul>
+
+													<form class="navbar-form navbar-left" th:action="@{/employeeSearch}" th:object="${employee}">
+														<div class="form-group">
+															<input type="text" th:field="*{name}" id="name" class="form-control" placeholder="Search"/>
+														</div>
+														<input type="submit" value="Search" class="form-control" />
+													</form>
+													<ul class="nav navbar-nav navbar-right">
+														<li><a th:href="@{/employee}">Add Employee</a></li>
+													</ul>
+												</div>
+
+											</div>
+
+										</div>
+
+										<table class="table table-condensed">
+											<thead>
+												<tr>
+													<th>#</th>
+													<th>Name</th>
+													<th>Age</th>
+													<th>City</th>
+													<th>Action</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="employee : ${employees}">
+													<td th:utext="${employee.id}">...</td>
+													<td th:utext="${employee.name}">...</td>
+													<td th:utext="${employee.age}">...</td>
+													<td th:utext="${employee.city}">...</td>
+													<td><a th:href="@{/employeeEdit/{id}(id = ${employee.id})}"><span
+															class="glyphicon glyphicon-edit"></span></a>&nbsp; &nbsp; <a
+														th:href="@{/deleteEmployee/{id}(id = ${employee.id})}"><span
+															class="glyphicon glyphicon-trash"></span></a></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</section>
+						<!-- /.blog-post -->
+					</div>
+				</div>
+
+			</div>
+			<!-- /.blog-main -->
+
+		</div>
+		<!-- /.row -->
+
+	</div>
+	<!-- /.container -->
+
+
+
+	<button class="material-scrolltop primary" type="button"></button>
+
+	<script type="text/scripttype" src="@{/js/jquery-1.11.3.min.js}"></script>
+	<script type="text/scripttype" src="@{/js/bootstrap.min.js}"></script>
+	<script type="text/scripttype" src="@{/js/ripples.min.js}"></script>
+	<script type="text/scripttype" src="@{/js/material.min.js}"></script>
+	<script type="text/scripttype" src="@{/js/material-scrolltop.js}"></script>
+	<script type="text/scripttype" src="@{/js/main.js}"></script>
+
+	<script>
+		$.material.init();
+		$('body').materialScrollTop();
+	</script>
+
+</body>
+</html>
